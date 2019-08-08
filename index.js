@@ -12,7 +12,7 @@ const schema = makeExecutableSchema({
 });
 
 const options = {
-    port: 3000,
+    port: process.env.PORT || 3000,
     endpoint: '/graphql',
     subscriptions: '/subscriptions',
     playground: '/playground',
