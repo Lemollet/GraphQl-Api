@@ -21,8 +21,16 @@ const createUser = async (_, { data }, context) => {
                   .catch( err => err);
 };
 
+const createEvent = (_, { data }) => {
+    return actions.createEvent(data)
+                  .then(newEvent => newEvent)
+                  .catch(err => err);
+};
+
+
 module.exports = {
     signup,
     login,
     createUser,
+    createEvent,
 };

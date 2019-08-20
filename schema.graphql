@@ -2,12 +2,14 @@ scalar Upload
 
 type Query {
   hello(name: String): String!
+  getUsers:[User]
 }
 
 type Mutation {
   signup(data: UserCreateInput!): Auth!
   login(email: String!, password: String!): Auth!
   createUser(data: UserCreateInput!): User
+  createEvent(data: EventCreateInput!): Auth!
 }
 
 type Auth {
@@ -23,6 +25,23 @@ input UserCreateInput {
   email: String!
   password: String!
   profile_img: Upload
+}
+
+input EventCreateInput {
+  event_name: String 
+  date: String
+  location: String 
+  vasos: Int
+  carne: Int 
+}
+
+type Event {
+  _id: String
+  event_name: String
+  date: String
+  location: String
+  vasos: Int 
+  carne: Int
 }
 
 type User {

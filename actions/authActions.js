@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const { createUser, getUserByEmail } = require('./userActions');
+const { createUser, getUserByEmail, newEvent } = require('./userActions');
 const { createToken } = require('../utils');
 
 const signup = (user) => {
@@ -15,7 +15,25 @@ const signup = (user) => {
                     message: 'Error',
                     token: err});
             });
-    });
+    })
+}
+
+const createEvent = (data) => {
+    return new Promise((res, rej)=> {
+        newEvent(data)
+            .then(nuevoEvento => {
+                res ({
+                    message: "evento creado con exito",
+                    token: createToken(nuevoEvento.description)
+                })
+            })
+            .catch(err => {
+                reject({
+                    message: "error",
+                    token: err
+                })
+            })
+    })
 }
 
 const login = (email, password) => {
@@ -43,4 +61,5 @@ const login = (email, password) => {
 module.exports = {
     signup,
     login,
+    createEvent,
 }
